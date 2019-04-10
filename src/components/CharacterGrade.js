@@ -12,9 +12,11 @@ const GradeContainer = styled.div`
 const CharacterGrade = ({ charactersInfo = [] }) => (
   <GradeContainer>
     {charactersInfo.map(character => (
-      <div>
-        <Character name={character.name} picture={character.picture} />
-      </div>
+      <Character
+        key={character.name}
+        name={character.name}
+        picture={character.picture}
+      />
     ))}
   </GradeContainer>
 );
