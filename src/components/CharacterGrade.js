@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "@emotion/styled";
 
+import { CharactersContext } from "../containers/CharacterContext";
 import Character from "./Character";
 
 const GradeContainer = styled.div`
@@ -9,16 +10,22 @@ const GradeContainer = styled.div`
   justify-content: center;
 `;
 
-const CharacterGrade = ({ charactersInfo = [] }) => (
-  <GradeContainer>
-    {charactersInfo.map(character => (
-      <Character
-        key={character.name}
-        name={character.name}
-        picture={character.picture}
-      />
-    ))}
-  </GradeContainer>
-);
+const CharacterGrade = () => {
+  const { state } = useContext(CharactersContext);
+  console.log("state", state);
+  return (
+    <GradeContainer>
+      {Object.entries(state.characters).map(([characterKey, character]) => (
+        <Character
+          key={characterKey}
+          characterKey={characterKey}
+          name={character.name}
+          destiny={character.destiny}
+          picture={character.picture}
+        />
+      ))}
+    </GradeContainer>
+  );
+};
 
 export default CharacterGrade;

@@ -1,6 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import styled from "@emotion/styled";
+
 import CharButton from "./CharButton";
+import { CharactersContext } from "../containers/CharacterContext";
 
 const Container = styled.div`
   position: relative;
@@ -52,7 +54,7 @@ const ButtonContainer = styled.div(({ visible }) => ({
   zIndex: 2
 }));
 
-const DestinyOverlay = styled.div(({ state }) => {
+const DestinyOverlay = styled.div(({ state, throne }) => {
   const baseStyle = {
     position: "absolute",
     top: 0,
@@ -88,9 +90,26 @@ const DestinyOverlay = styled.div(({ state }) => {
   };
 });
 
-const Character = ({ name, picture = "" }) => {
+const Character = ({ name, picture = "", destiny = "", characterKey }) => {
   const [hover, setHover] = useState(false);
-  const [destiny, setDestiny] = useState("");
+  const { dispatch } = useContext(CharactersContext);
+
+  const updateDestiny = value => {
+    dispatch({
+      type: "destiny",
+      payload: {
+        character: characterKey,
+        destiny: value
+      }
+    });
+  };
+
+  const throneCharacter = character => {
+    dispatch({
+      type: "throne",
+      payload: character
+    });
+  };
 
   return (
     <Container
@@ -108,18 +127,22 @@ const Character = ({ name, picture = "" }) => {
         <CharButton
           name="💪"
           label="Alive"
-          onClick={() => setDestiny("Alive")}
+          onClick={() => updateDestiny("Alive")}
         />
-        <CharButton name="💀" label="Dead" onClick={() => setDestiny("Dead")} />
+        <CharButton
+          name="💀"
+          label="Dead"
+          onClick={() => updateDestiny("Dead")}
+        />
         <CharButton
           name="🧟‍♂️"
           label="Wight"
-          onClick={() => setDestiny("Wight")}
+          onClick={() => updateDestiny("Wight")}
         />
         <CharButton
           name="👑"
           label="Throne"
-          onClick={() => setDestiny("Throne")}
+          onClick={() => throneCharacter(characterKey)}
         />
       </ButtonContainer>
     </Container>
