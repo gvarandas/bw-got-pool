@@ -12,7 +12,6 @@ const GradeContainer = styled.div`
 
 const CharacterGrade = () => {
   const { state } = useContext(CharactersContext);
-  console.log("render", state);
   return (
     <GradeContainer>
       {Object.entries(state.characters).map(([characterKey, character]) => (

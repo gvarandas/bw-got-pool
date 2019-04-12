@@ -109,7 +109,8 @@ const characters = {
   },
   night: {
     name: "Night King",
-    picture: "https://awoiaf.westeros.org/thumb.php?f=Night_king.jpg&width=300",
+    picture:
+      "https://i.pinimg.com/originals/77/3a/74/773a749a3e0e313a5223fa1b2190fc1d.png",
     destiny: ""
   },
   podrick: {
@@ -132,8 +133,7 @@ const characters = {
   },
   samwell: {
     name: "Samwell Tarly",
-    picture:
-      "https://vignette.wikia.nocookie.net/gameofthrones/images/3/30/Samwell_Season_8_Cropped.PNG/revision/latest?cb=20190207112410",
+    picture: "https://got2015.be/Cast/samwell-360.jpg",
     destiny: ""
   },
   sandor: {
@@ -190,13 +190,14 @@ const characters = {
   },
   drogon: {
     name: "Drogon (Dany's Dragon Mount)",
-    picture: "https://i.ytimg.com/vi/zObIFr5O4p8/hqdefault.jpg",
+    picture:
+      "https://imgix.bustle.com/rehost/2016/9/13/6c2e38af-645c-4b46-9972-735991575042.jpeg?w=970&h=546&fit=crop&crop=faces&auto=format&q=70",
     destiny: ""
   },
   rhaegal: {
     name: "Rhaegal (Green/Bronze Dragon)",
     picture:
-      "https://oyster.ignimgs.com/mediawiki/apis.ign.com/game-of-thrones/4/48/Rhaegal.PNG?width=325",
+      "https://i.pinimg.com/originals/7a/8b/59/7a8b599e03face37a218608cb8dc8c05.jpg",
     destiny: ""
   },
   viserion: {

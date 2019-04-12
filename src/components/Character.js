@@ -54,7 +54,7 @@ const ButtonContainer = styled.div(({ visible }) => ({
   zIndex: 2
 }));
 
-const DestinyOverlay = styled.div(({ state }) => {
+const DestinyOverlay = styled.div(({ state, throne }) => {
   const baseStyle = {
     position: "absolute",
     top: 0,
@@ -90,7 +90,7 @@ const DestinyOverlay = styled.div(({ state }) => {
   };
 });
 
-const Character = ({ name, picture = "", destiny, characterKey }) => {
+const Character = ({ name, picture = "", destiny = "", characterKey }) => {
   const [hover, setHover] = useState(false);
   const { dispatch } = useContext(CharactersContext);
 
@@ -101,6 +101,13 @@ const Character = ({ name, picture = "", destiny, characterKey }) => {
         character: characterKey,
         destiny: value
       }
+    });
+  };
+
+  const throneCharacter = character => {
+    dispatch({
+      type: "throne",
+      payload: character
     });
   };
 
@@ -135,7 +142,7 @@ const Character = ({ name, picture = "", destiny, characterKey }) => {
         <CharButton
           name="👑"
           label="Throne"
-          onClick={() => updateDestiny("Throne")}
+          onClick={() => throneCharacter(characterKey)}
         />
       </ButtonContainer>
     </Container>
