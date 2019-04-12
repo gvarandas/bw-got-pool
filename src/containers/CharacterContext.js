@@ -26,31 +26,49 @@ const updateDestiny = (state, payload) => {
   };
 };
 
+const setThrone = (state, character) => ({
+  ...state,
+  throne: character
+});
+
+const resetThrone = state => {
+  if (state.throne) {
+    return {
+      ...state,
+      characters: {
+        ...state.characters,
+        [state.throne]: {
+          ...state.characters[state.throne],
+          destiny: ""
+        }
+      }
+    };
+  }
+  return state;
+};
+
 let reducer = (state, action) => {
   switch (action.type) {
     case "reset":
       return initialState;
     case "throne":
-      const throneState = {
-        ...state,
-        // Reset previous king/queen
-        characters: {
-          ...state.characters,
-          [state.throne]: {
-            ...state.characters[state.throne],
-            destiny: ""
-          }
-        },
-        // Set the next character on the throne
-        throne: action.payload
-      };
       // Update the new regent status
-      return updateDestiny(throneState, {
-        character: action.payload,
-        destiny: "Throne"
-      });
+      return updateDestiny(
+        // Set the next character on the throne
+        setThrone(
+          // Reset the last regent
+          resetThrone({
+            ...state
+          }),
+          action.payload
+        ),
+        {
+          character: action.payload,
+          destiny: "Throne"
+        }
+      );
     case "destiny":
-      return updateDestiny(state, action);
+      return updateDestiny(state, action.payload);
     default:
       return state;
   }
