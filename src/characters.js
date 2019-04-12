@@ -161,7 +161,8 @@ const characters = {
   },
   tyrion: {
     name: "Tyrion Lannister",
-    picture: "http://assets.viewers-guide.hbo.com/small59944e8fe5822@2x.jpg",
+    picture:
+      "https://pbs.twimg.com/profile_images/668279339838935040/8sUE9d4C_400x400.jpg",
     destiny: ""
   },
   varys: {
