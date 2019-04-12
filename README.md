@@ -1,5 +1,7 @@
 # Borrowell Game of Thrones Pool
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/152ce0fc-4d02-4afc-9d78-27f1f696ab5b/deploy-status)](https://app.netlify.com/sites/bw-got-pool/deploys)
+
 ![Game of Thrones Image][got_logo]
 
 ## Installation
