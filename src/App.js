@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { css, Global } from "@emotion/core";
 
-import charactersInfo from "./characters";
 import CharacterGrade from "./components/CharacterGrade";
 import Header from "./components/Header";
+import { CharactersProvider } from "./containers/CharacterContext";
 
 const CSS = () => (
   <Global
@@ -38,7 +38,9 @@ class App extends Component {
         <div className="App">
           <Header />
           <main>
-            <CharacterGrade charactersInfo={charactersInfo} />
+            <CharactersProvider>
+              <CharacterGrade />
+            </CharactersProvider>
           </main>
         </div>
       </>
