@@ -23,23 +23,25 @@ firebase.initializeApp(firebaseConfig);
 export const firestoreService = {
   getPools: () => firebase.firestore().collection("pools"),
   getPool: username =>
-    firestoreService
-      .getPools()
-      .doc(username)
-      .get()
-      .then(doc => {
-        if (doc.exists) {
-          return doc.data();
-        } else {
-          console.log("No such document!");
-        }
-      })
-      .catch(error =>
-        console.log(
-          "Oooops! Something failed when retrieving the data from the Firestore",
-          error
-        )
-      )
+    username
+      ? firestoreService
+          .getPools()
+          .doc(username)
+          .get()
+          .then(doc => {
+            if (doc.exists) {
+              return doc.data();
+            } else {
+              console.log("No such document!");
+            }
+          })
+          .catch(error =>
+            console.log(
+              "Oooops! Something failed when retrieving the data from the Firestore",
+              error
+            )
+          )
+      : null
 };
 
 export default firebase;

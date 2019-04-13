@@ -1,26 +1,25 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useContext } from "react";
 
 import { firestoreService } from "../firebase";
+import { CharactersContext } from "../containers/CharacterContext";
+import CharacterGrade from "../components/CharacterGrade";
 
 const DetailPage = ({ username }) => {
-  const [pool, setPool] = useState();
+  const { dispatch } = useContext(CharactersContext);
 
   useEffect(() => {
     const fetchPool = async () => {
       const result = await firestoreService.getPool(username);
-      setPool(result);
+      dispatch({
+        type: "load",
+        payload: result
+      });
     };
 
     fetchPool();
-  }, {});
+  }, []);
 
-  return (
-    <div>
-      <pre>
-        <code>{JSON.stringify(pool)}</code>
-      </pre>
-    </div>
-  );
+  return <CharacterGrade />;
 };
 
 export default DetailPage;

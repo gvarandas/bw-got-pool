@@ -2,9 +2,10 @@ import React, { Component } from "react";
 import { css, Global } from "@emotion/core";
 import { Router } from "@reach/router";
 
+import { CharactersProvider } from "./containers/CharacterContext";
+
 import Header from "./components/Header";
 import HomePage from "./pages/Home";
-import DetailPage from "./pages/Detail";
 
 const CSS = () => (
   <Global
@@ -39,10 +40,12 @@ class App extends Component {
         <div className="App">
           <Header />
           <main>
-            <Router>
-              <HomePage path="/" />
-              <DetailPage path="/:username" />
-            </Router>
+            <CharactersProvider>
+              <Router>
+                <HomePage path="/:username" />
+                <HomePage default />
+              </Router>
+            </CharactersProvider>
           </main>
         </div>
       </>

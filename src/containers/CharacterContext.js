@@ -47,6 +47,18 @@ const resetThrone = state => {
   return state;
 };
 
+const loadRemoteConfig = ({ characters, throne }) => {
+  const newState = { ...initialState };
+  Object.entries(characters).forEach(([character, destiny]) => {
+    newState.characters[character] = {
+      ...initialState.characters[character],
+      destiny
+    };
+  });
+  newState.throne = throne;
+  return newState;
+};
+
 let reducer = (state, action) => {
   switch (action.type) {
     case "reset":
@@ -69,6 +81,8 @@ let reducer = (state, action) => {
       );
     case "destiny":
       return updateDestiny(state, action.payload);
+    case "load":
+      return loadRemoteConfig(action.payload);
     default:
       return state;
   }
