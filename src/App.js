@@ -1,9 +1,11 @@
 import React, { Component } from "react";
 import { css, Global } from "@emotion/core";
+import { Router } from "@reach/router";
 
-import CharacterGrade from "./components/CharacterGrade";
-import Header from "./components/Header";
 import { CharactersProvider } from "./containers/CharacterContext";
+
+import Header from "./components/Header";
+import HomePage from "./pages/Home";
 
 const CSS = () => (
   <Global
@@ -39,7 +41,10 @@ class App extends Component {
           <Header />
           <main>
             <CharactersProvider>
-              <CharacterGrade />
+              <Router>
+                <HomePage path="/:username" />
+                <HomePage default />
+              </Router>
             </CharactersProvider>
           </main>
         </div>
