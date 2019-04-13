@@ -1,13 +1,24 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import { firestoreService } from "../firebase";
 
 const DetailPage = ({ username }) => {
-  firestoreService.getPool(username).then(value => console.log("value", value));
+  const [pool, setPool] = useState();
+
+  useEffect(() => {
+    const fetchPool = async () => {
+      const result = await firestoreService.getPool(username);
+      setPool(result);
+    };
+
+    fetchPool();
+  }, {});
 
   return (
     <div>
-      <p>DetailPage</p>
+      <pre>
+        <code>{JSON.stringify(pool)}</code>
+      </pre>
     </div>
   );
 };
